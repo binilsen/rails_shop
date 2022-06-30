@@ -1,0 +1,36 @@
+<header>
+    <h1><%= link_to "Browse Products" , root_path %></h1>
+</header>
+
+<div class="row  w-100">
+   <div class="card w-100">
+        <h1>
+            <%= @product.product_name %>
+        </h1>
+        <hr>
+        <div class="row">
+            <h5 class="w-100">Product Description:</h5>
+            <h5 class="text-justify"><%= @product.product_title %></h5>
+        </div>
+        <div class="row justify-content-between">
+            <h5>Weight</h5>
+            <h2><%= format_weight(@product.product_weight) %></h2>
+        </div>
+        <div class="row justify-content-between">
+            <h5>Price</h5>
+            <h2>
+                $<%= @product.product_price %>
+            </h2>
+        </div>
+   </div>
+   <div class="card w-100">
+        <div class="col">
+            <div class="my-1">
+                <%=link_to 'Buy now' ,buy_now_path(@product.product_id),class:'btn'%>
+            </div>
+            <div class="my-1">
+              <%=link_to 'Add to Cart' ,add_product_path(@product.product_id),class:'btn'%>
+            </div>
+        </div>
+   </div>
+</div>

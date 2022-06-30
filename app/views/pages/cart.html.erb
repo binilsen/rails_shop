@@ -1,0 +1,58 @@
+<header>
+<h1>Cart</h1>
+</header>
+
+
+<div class="cart-container">
+  <%if !(@products.nil?) %>
+  <table class="w-100">
+    <thead>
+      <th></th>
+      <th></th>
+      <th>Qty</th>
+      <th>Rate</th>
+      <th>Total</th>
+    </thead>
+
+    <tbody>
+      <% @cart.each do |item| %>
+      <tr>
+        <td><%= @products[item.product_id].first.product_name %></td>
+        <td class="text-center"><%= format_weight(@products[item.product_id].first.product_weight)%></td>
+        <td class="text-center">
+        <span><%= link_to "-", remove_product_path(item.product_id)  ,class:'btn-action'%></span>
+        <%= item.product_quantity %>
+        <span><%= link_to "+", add_product_path(item.product_id) ,class:'btn-action' %></span>
+        </td>
+        <td class="text-center">$<%= @products[item.product_id].first.product_price %></td>
+        <td class="text-center">$<%=(@products[item.product_id].first.product_price)*(item.product_quantity) %></td>
+      </tr>
+      <% end %>
+       <tr>
+        <td>Total</td>
+        <td></td>
+        <td></td>
+        <td class="text-center"></td>
+        <td class="text-center">$<%=@cart_total%></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="text-center">GST</td>
+        <td class="text-center">+<%=(gst_included_price(@cart_total)-@cart_total)%> </td>
+      </tr>
+      <tr>
+        <th class="text-start">Total to pay</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="text-center">$<%= gst_included_price(@cart_total) %></td>
+      </tr>
+
+    </tbody>
+  </table>
+  <%= link_to "Place Order" , order_path,class:'btn' %>
+  <%end%>
+</div>
+  <%= link_to "Continue shopping" , root_path,class:'btn' %>

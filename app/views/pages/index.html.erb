@@ -1,0 +1,27 @@
+<header>
+<h1>Products</h1>
+<div>
+<%= link_to "Cart", cart_path,class:'btn' %>
+</div>
+</header>
+<div class="product-container">
+<% @products.each do |product| %>
+<div class="card">
+<div class="card-title row justify-content-between">
+    <p class="product-title"><%= link_to product.product_name, product_path(product.product_id)%></p>
+</div>
+<div class="card-body">
+ <div class="row justify-content-between">
+    <p>Weight</p>
+    <p>
+    <%= format_weight(product.product_weight) %>
+    </p>
+  </div>
+  <div class="row justify-content-between">
+    <p>Price</p>
+    <p>$<%= product.product_price %></p>
+  </div>
+ </div>
+</div>
+<% end %>
+</div>
