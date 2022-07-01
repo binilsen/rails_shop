@@ -36,6 +36,7 @@ header {
 .col {
   display: flex;
   flex-flow: column wrap;
+  align-content: center;
 }
 .justify-content-between {
   justify-content: space-between;
@@ -53,6 +54,9 @@ header {
 .my-1 {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+.my-50 {
+  margin: 50px 0px;
 }
 .text-justify {
   text-align: justify;

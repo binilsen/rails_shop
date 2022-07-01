@@ -13,7 +13,7 @@ class CreateShopTable < ActiveRecord::Migration[7.0]
       t.integer :cart_id, primary_key: true
       t.timestamps
     end
-    create_table :cart_products do |t|
+    create_table :carts_products do |t|
       t.belongs_to :product
       t.belongs_to :cart
       t.timestamps
