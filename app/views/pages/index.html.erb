@@ -1,10 +1,5 @@
-<header>
-<h1>Products</h1>
-<div>
-<%= link_to "Cart", cart_path,class:'btn' %>
-</div>
-</header>
-<div class="product-container">
+
+<div class="product-container justify-content-center">
 <% @products.each do |product| %>
 <div class="card">
 <div class="card-title row justify-content-between">
@@ -19,7 +14,7 @@
   </div>
   <div class="row justify-content-between">
     <p>Price</p>
-    <p>$<%= product.product_price %></p>
+    <p class="text-danger">$<%= product.product_price %></p>
   </div>
  </div>
 </div>

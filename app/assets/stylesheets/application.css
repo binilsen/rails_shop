@@ -32,6 +32,7 @@ header {
 }
 .row {
   display: flex;
+  align-items: center;
 }
 .col {
   display: flex;
@@ -42,6 +43,10 @@ header {
   justify-content: space-between;
   align-items: center;
 }
+.justify-content-center{
+  justify-content: center;
+  align-items: center;
+}
 .btn {
   display: inline-block;
   background: teal;
@@ -49,11 +54,61 @@ header {
   font-size: large;
   padding: 10px;
   border-radius: 4px;
+  border: transparent;
   text-decoration: none;
+}
+.btn-sm{
+  display: inline-block;
+  background: teal;
+  color: white;
+  font-size: small;
+  padding: 5px;
+  border:transparent;
+  border-radius: 4px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.border-none{
+  border: none;
+}
+.border-right{
+  border-right: 1px solid black;
 }
 .my-1 {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+.rounded {
+  border-radius: 4px;
+}
+.bg-danger {
+  background-color: #ff0063;
+  color: white;
+}
+.text-danger{
+  color: #ff0063;
+}
+.p-2 {
+  padding: 10px;
+}
+.fs-5 {
+  font-size: large;
+}
+.my-4 {
+  margin: 40px 0;
+}
+.mt-4 {
+  margin-top: 40px;
+}
+.mx-1 {
+  margin: 0 10px;
+}
+.bg-secondary {
+  background-color: grey;
+  color: white;
+}
+.fs-4 {
+  font-size: x-large;
 }
 .my-50 {
   margin: 50px 0px;
@@ -100,6 +155,9 @@ header {
 .text-start {
   text-align: left;
 }
+.text-end{
+  text-align: right;
+}
 th,
 td {
   border-bottom: 1px solid black;
@@ -111,4 +169,12 @@ td {
   border: 1px solid black;
   border-radius: 4px;
   padding: 0px 10px;
+}
+.profile_img{
+  width: 100px;
+  height: 120px;
+  box-shadow: 1px 1px 4px black;
+  border-radius: 4px;
+  padding: 0 10px;
+  margin: 10px 0;
 }

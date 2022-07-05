@@ -1,6 +1,3 @@
-<header>
-    <h1><%= link_to "Browse Products" , root_path %></h1>
-</header>
 
 <div class="row  w-100 my-50">
    <div class="card w-100">
@@ -10,8 +7,9 @@
         <hr>
         <div class="row">
             <h5 class="w-100">Product Description:</h5>
-            <h5 class="text-justify"><%= @product.product_title %></h5>
+            <h5 class="text-justify bg-danger p-2 rounded"><%= @product.product_title %></h5>
         </div>
+        <hr>
         <div class="row justify-content-between">
             <h5>Weight</h5>
             <h2><%= format_weight(@product.product_weight) %></h2>

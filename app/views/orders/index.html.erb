@@ -1,0 +1,30 @@
+<h2>Recent Order</h2>
+<hr class="my-1">
+<% if !(@orders.nil?) %>
+<table class="w-100">
+    <thead class="bg-secondary">
+        <tr>
+            <th>Order id</th>
+            <th>Order date</th>
+            <th>Order Total</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody class="text-center">
+        <%@orders.each do |order|%>
+            <tr>
+                <th>
+                    <%=link_to order.order_id,order_path(order.order_id)%>
+                </th>
+                <th>
+                    <%= order.created_at.to_s.split(' ')[0].split('-').reverse.join('-')%>
+                </th>
+                <td>
+                    $<%=order.order_total+order.order_tax%>
+                </td>
+                <td><button class="btn" type="button">Processing</button></td>
+            </tr>
+            <%end%>
+    </tbody>
+</table>
+<%end%>

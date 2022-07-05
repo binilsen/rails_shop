@@ -10,6 +10,17 @@
   </head>
 
   <body>
+    <header>
+      <h1><%= link_to "Home", root_path,class:'btn mx-1 fs-4' %></h1>
+      <div class="row">
+      <div>
+      <%= link_to "My Account", account_path,class:'btn mx-1' %>
+      </div>
+      <div>
+      <%= link_to "Cart", cart_path,class:'btn' %>
+      </div>
+      </div>
+    </header>
     <%= yield %>
   </body>
 </html>

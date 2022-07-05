@@ -7,6 +7,6 @@ module PagesHelper
   end
 
   def gst_included_price(price)
-    (price * (1.05))
+    (price * (1.05)).round
   end
 end

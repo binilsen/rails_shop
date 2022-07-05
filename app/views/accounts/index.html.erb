@@ -1,0 +1,39 @@
+
+<div class="row my-1 ">
+    <h3 class="text-danger">Quick Links: </h3>
+    <%=link_to 'My Orders',orders_path,class: 'btn mx-1'%>
+</div>
+<hr class="my-1">
+<div class="row">
+    <div class="profile w-100 text-center border-right">
+       <%=image_tag('user.svg',class: "profile_img")%>
+       <h3 class="text-danger"><%=@user.user_first_name+' '+@user.user_last_name%></h3>
+       <div class="row justify-content-center my-1">
+            <button class="btn-sm mx-1">Edit</button>
+            <button class="btn-sm">Remove</button>
+       </div>
+    </div>
+    <div class="details w-100 p-2">
+        <h3 class="my-1">Account Details | <span class="text-danger">Customer ID: <%=@user.user_id%></span></h3>
+        <hr>
+        <table class="w-100 ">
+            <tr>
+                <th class="text-start">Name:</th>
+                <td><%=@user.user_first_name+' '+@user.user_last_name%></td>
+            </tr>
+            <tr>
+                <th class="text-start">Email:</th>
+                <td><%=@user.user_email%></td>
+            </tr>
+            <tr>
+                <th class="text-start">Mobile:</th>
+                <td><%=@user.user_mobile %></td>
+            </tr>
+            <tr>
+                <th class="text-start">Address:</th>
+                <td><%=@user.user_address%></td>
+            </tr>
+        </table>
+    </div>
+</div>
+<hr>
