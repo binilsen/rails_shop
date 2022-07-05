@@ -67,7 +67,7 @@ class PagesController < ApplicationController
     @order_place = true if get_cart.save
     user = User.first # fetching current user
     Order.create(id: Time.now.to_i, cart_id: get_cart.id, order_total: get_cart.cart_total, order_tax: get_tax(get_cart.cart_total), user_id: user.id)
-    flash[:status]="Order Successfully Place."
+    flash[:status]="Order Successfully Placed."
     redirect_to root_path
   end
 
