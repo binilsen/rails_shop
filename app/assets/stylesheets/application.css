@@ -43,7 +43,7 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-.justify-content-center{
+.justify-content-center {
   justify-content: center;
   align-items: center;
 }
@@ -57,21 +57,21 @@ header {
   border: transparent;
   text-decoration: none;
 }
-.btn-sm{
+.btn-sm {
   display: inline-block;
   background: teal;
   color: white;
   font-size: small;
   padding: 5px;
-  border:transparent;
+  border: transparent;
   border-radius: 4px;
   text-decoration: none;
   cursor: pointer;
 }
-.border-none{
+.border-none {
   border: none;
 }
-.border-right{
+.border-right {
   border-right: 1px solid black;
 }
 .my-1 {
@@ -85,8 +85,12 @@ header {
   background-color: #ff0063;
   color: white;
 }
-.text-danger{
+.text-danger {
   color: #ff0063;
+}
+.w-50 {
+  width: 50%;
+  margin: auto;
 }
 .p-2 {
   padding: 10px;
@@ -128,6 +132,7 @@ header {
   margin: 5px;
   border-radius: 4px;
   padding: 5px;
+  box-shadow: 1px 1px 4px black;
 }
 .card-title {
   font-size: large;
@@ -155,7 +160,7 @@ header {
 .text-start {
   text-align: left;
 }
-.text-end{
+.text-end {
   text-align: right;
 }
 th,
@@ -170,7 +175,7 @@ td {
   border-radius: 4px;
   padding: 0px 10px;
 }
-.profile_img{
+.profile_img {
   width: 100px;
   height: 120px;
   box-shadow: 1px 1px 4px black;

@@ -1,0 +1,12 @@
+            <tr>
+                <th>
+                    <%= link_to order.id, order_path(order.id) %>
+                </th>
+                <th>
+                    <%= order.created_at.to_s.split(" ")[0].split("-").reverse.join("-") %>
+                </th>
+                <td>
+                    $<%= order.order_total + order.order_tax %>
+                </td>
+                <td><button class="btn" type="button">Processing</button></td>
+            </tr>

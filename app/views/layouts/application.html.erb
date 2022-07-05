@@ -10,7 +10,7 @@
   </head>
 
   <body>
-    <header>
+    <header class="my-1">
       <h1><%= link_to "Home", root_path,class:'btn mx-1 fs-4' %></h1>
       <div class="row">
       <div>
@@ -21,6 +21,11 @@
       </div>
       </div>
     </header>
+    <%if flash.count!=0 %>
+      <div class="status w-50 text-center my-1 rounded bg-danger">
+          <h4><%=flash[:status]%></h4>
+      </div>
+     <%end%>
     <%= yield %>
   </body>
 </html>

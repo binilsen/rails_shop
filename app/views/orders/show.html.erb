@@ -5,13 +5,13 @@
         <div class="row my-1 w-100">
             <p class="fs-5 w-100">Order id:</p>
             <p class="fs-5 w-100 bg-secondary rounded text-center">
-                <%= @order.order_id%>
+                <%= @order.id %>
             </p>
         </div>
         <div class="row my-1 w-100">
             <p class="fs-5 w-100">Ordered date:</p>
             <p class="fs-5 w-100 bg-secondary rounded text-center">
-                <%=@order.updated_at.to_s.slice(0,10)%>
+                <%= @order.updated_at.to_s.slice(0, 10) %>
             </p>
         </div>
     </div>
@@ -22,7 +22,7 @@
         </div>
         <div class="row my-1 w-100">
             <p class="fs-5 w-100">Order Total:</p>
-            <p class="fs-5 w-100 bg-secondary rounded text-center">$<%=(@order.order_total+@order.order_tax)%>
+            <p class="fs-5 w-100 bg-secondary rounded text-center">$<%= (@order.order_total + @order.order_tax) %>
             </p>
         </div>
     </div>
@@ -43,17 +43,18 @@
             <% @cart.each do |item| %>
                 <tr>
                     <td>
-                        <%= link_to @products[item.product_id].first.product_name+' '+format_weight(@products[item.product_id].first.product_weight),product_path(item.product_id)%></td>
-        <td class="text-center">$<%= @products[item.product_id].first.product_price %></td>
-        <td class="text-center"><%=(item.product_quantity) %></td>
-        <td class="text-center">$<%=(@products[item.product_id].first.product_price)*(item.product_quantity) %></td>
-      </tr>
-      <% end %>
-      <tr>
-          <th>Tax(GST)</th>
-          <td colspan="2"></td>
-          <td>+$<%=@order.order_tax%></td>
-      </tr>
+                        <%= link_to @products[item.product_id].first.product_name + " " + format_weight(@products[item.product_id].first.product_weight), product_path(item.product_id) %>
+                    </td>
+                    <td class="text-center">$<%= @products[item.product_id].first.product_price %></td>
+                    <td class="text-center"><%= (item.product_quantity) %></td>
+                    <td class="text-center">$<%= (@products[item.product_id].first.product_price) * (item.product_quantity) %></td>
+                </tr>
+                <% end %>
+                <tr>
+                    <th>Tax(GST)</th>
+                    <td colspan="2"></td>
+                    <td>+$<%= @order.order_tax %></td>
+                </tr>
     </tbody>
   </table>
 </div

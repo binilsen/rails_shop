@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   @@user = User.first
 
   def index
-    @orders = Order.where("user_id=?", @@user.user_id)
+    @orders = Order.where("user_id=?", @@user.id)
   end
 
   def show
@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
     product_list = get_cart(@order.cart_id).products
     @products = {}
     @cart.each do |item|
-      @products[item.product_id] = product_list.select { |x| x if x.product_id == item.product_id }
+      @products[item.product_id] = product_list.select { |x| x if x.id == item.product_id }
     end
   end
 

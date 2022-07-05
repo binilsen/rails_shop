@@ -11,7 +11,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2022_07_04_060648) do
-  create_table "carts", primary_key: "cart_id", force: :cascade do |t|
+  create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "processed", default: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_060648) do
     t.index ["product_id"], name: "index_carts_products_on_product_id"
   end
 
-  create_table "orders", primary_key: "order_id", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
     t.integer "cart_id"
     t.integer "user_id"
     t.integer "order_total"
@@ -40,7 +40,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_060648) do
     t.index ["user_id"], name: "index_orders_on_user_id"
   end
 
-  create_table "products", primary_key: "product_id", force: :cascade do |t|
+  create_table "products", force: :cascade do |t|
     t.string "product_name"
     t.text "product_title"
     t.integer "product_weight"
@@ -49,7 +49,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_060648) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", primary_key: "user_id", force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "user_first_name", null: false
     t.string "user_last_name", null: false
     t.string "user_email", null: false
@@ -61,4 +61,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_060648) do
     t.index ["user_mobile"], name: "index_users_on_user_mobile"
   end
 
+  add_foreign_key "orders", "carts"
+  add_foreign_key "orders", "users"
 end

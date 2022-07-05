@@ -11,20 +11,7 @@
         </tr>
     </thead>
     <tbody class="text-center">
-        <%@orders.each do |order|%>
-            <tr>
-                <th>
-                    <%=link_to order.order_id,order_path(order.order_id)%>
-                </th>
-                <th>
-                    <%= order.created_at.to_s.split(' ')[0].split('-').reverse.join('-')%>
-                </th>
-                <td>
-                    $<%=order.order_total+order.order_tax%>
-                </td>
-                <td><button class="btn" type="button">Processing</button></td>
-            </tr>
-            <%end%>
+        <%= render partial: "orders/order", collection: @orders %>
     </tbody>
 </table>
-<%end%>
+<% end %>
