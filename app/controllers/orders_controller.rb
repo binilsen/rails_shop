@@ -2,7 +2,7 @@ class OrdersController < ApplicationController
   @@user = User.first
 
   def index
-    @orders = Order.where("user_id=?", @@user.id)
+    @orders = Order.order(id: :desc).where("user_id=?", @@user.id)
   end
 
   def show
