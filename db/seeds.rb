@@ -18,4 +18,3 @@ Product.create(product_name:"Maida",product_title:'Maida is used for both desser
 Product.create(product_name:'Turmeric Powder',product_title:'Turmeric Powder is not only used for its flavour and aroma but also for its health benefits. It has antiseptic qualities as well as properties of flavouring agent and is also a natural beauty aid.',product_weight:100,product_price:22.0)
 Product.create(product_name:'Gold Winner Sunflower Oil',product_title:'Gold Winner Refined Sunflower Oil has a high smoking point and good heat tolerance thereby making it a good choice for preparing meals.',product_weight:1000,product_price:195.0)
 Product.create(product_name:'Almonds',product_title:'Almonds are used in products such as cakes, bread, biscuits, muesli, confectionery and ice cream.',product_weight:500,product_price:389.0)
-User.create(user_first_name:'Binil',user_last_name:'S',user_email:'sen@gmail.com',user_mobile:'1234567890',user_address:'ABX House ,XZY Street,Kerala')

@@ -1,0 +1,29 @@
+<%= content_for :title, "Shop | #{current_user.email}" %>
+<div class="row my-1 ">
+    <h3 class="text-danger">Quick Links: </h3>
+    <%= link_to "My Orders", orders_path, class: "btn mx-1" %>
+</div>
+<hr class="my-1">
+<div class="row">
+    <div class="profile w-100 text-center border-right">
+       <%= image_tag("user.svg", class: "profile_img") %>
+       <h3 class="text-danger"><%=current_user.email %></h3>
+       <div class="row justify-content-center my-1">
+            <button class="btn-sm mx-1">Edit</button>
+            <button class="btn-sm">Remove</button>
+       </div>
+    </div>
+    <div class="details w-100 p-2">
+        <h3 class="my-1">Account Details | <span class="text-danger">Customer ID: <%= current_user.id %></span></h3>
+        <hr>
+        <table class="w-100 ">
+            
+            <tr>
+                <th class="text-start">Email:</th>
+                <td><%= current_user.email %></td>
+            </tr>
+        
+        </table>
+    </div>
+</div>
+<hr>

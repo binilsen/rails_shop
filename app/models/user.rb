@@ -1,5 +1,9 @@
 class User < ApplicationRecord
-  has_many :orders,dependent: :destroy
-  validates :user_email, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 10 }
-  validates :user_mobile, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 10, maximum: 10 }
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :rememberable, :validatable
+  has_many :carts
+  has_many :carts_products
+  has_many :orders
 end

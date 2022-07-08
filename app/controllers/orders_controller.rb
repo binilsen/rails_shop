@@ -1,8 +1,8 @@
 class OrdersController < ApplicationController
-  @@user = User.first
+  before_action :authenticate_user!
 
   def index
-    @orders = Order.order(id: :desc).where("user_id=?", @@user.id)
+    @orders = current_user.orders.order(id: :desc)
   end
 
   def show

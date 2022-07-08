@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_04_060648) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_07_102415) do
   create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "processed", default: false
     t.integer "cart_total", default: 0
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "carts_products", force: :cascade do |t|
@@ -24,8 +26,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_060648) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "product_quantity", default: 1
+    t.integer "user_id", null: false
     t.index ["cart_id"], name: "index_carts_products_on_cart_id"
     t.index ["product_id"], name: "index_carts_products_on_product_id"
+    t.index ["user_id"], name: "index_carts_products_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -50,17 +54,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_04_060648) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "user_first_name", null: false
-    t.string "user_last_name", null: false
-    t.string "user_email", null: false
-    t.string "user_mobile", null: false
-    t.text "user_address", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_email"], name: "index_users_on_user_email"
-    t.index ["user_mobile"], name: "index_users_on_user_mobile"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "carts", "users"
+  add_foreign_key "carts_products", "users"
   add_foreign_key "orders", "carts"
   add_foreign_key "orders", "users"
 end
