@@ -1,9 +1,9 @@
 <%= content_for :title, "Shop | Orders" %>
-<h2>Recent Order</h2>
+<h2 class="fw-light">Recent Order</h2>
 <hr class="my-1">
 <% if !(@orders.nil?) %>
-<table class="w-100">
-    <thead class="bg-secondary">
+<table class="table table-hover table-striped">
+    <thead class="bg-dark text-center text-white">
         <tr>
             <th>Order id</th>
             <th>Order date</th>

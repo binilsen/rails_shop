@@ -1,28 +1,39 @@
-<h2 class="text-center my-4">Log in</h2>
-
+<h2 class="text-center fw-light fs-1 my-4">Log in</h2>
+<%=content_for :title, "User Sign in"%>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="container">
-    <div class="field my-1">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email",class:'form-control' %>
+  <div class="row justify-content-center">
+   <div class="col-sm-6">
+    <div class="form-floating  my-2">
+      <%= f.email_field :email, autofocus: true, autocomplete: "email" ,class:'form-control',placeholder: :email %>
+        <%= f.label :email %>
+    </div>
+   </div>
   </div>
 
-  <div class="field my-1">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password",class:'form-control' %>
+<div class="row justify-content-center">
+  <div class="col-sm-6">
+      <div class="form-floating my-1">
+        <%= f.password_field :password, autocomplete: "current-password" ,class:'form-control',placeholder: :password %>
+          <%= f.label :password %>
+      </div>
   </div>
+</div>
 
   <% if devise_mapping.rememberable? %>
-    <div class="field text-center my-4">
-      <%= f.check_box :remember_me %><br>
-      <%= f.label :remember_me %>
+   <div class="row justify-content-center">
+    <div class="col-sm-6">
+      <div class="text-center my-4">
+        <%= f.check_box :remember_me ,class:'form-check-input ' %><br>
+          <%= f.label :remember_me ,class:'form-check-label' %>
+      </div> 
     </div>
+   </div>
   <% end %>
 
-  <div class="actions row justify-content-center my-1">
-    <%= f.submit class:"btn  w-50 d-block", value:"Log in" %>
+  <div class="actions text-center my-1">
+    <%= f.submit class:"btn btn-outline-primary btn-lg", value:"Log in" %>
   </div>
 <% end %>
   </div>
 
-<%= render "devise/shared/links" %>
+<%# <%= render "devise/shared/links" %> 

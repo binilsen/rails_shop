@@ -2,10 +2,10 @@
 
 <div class="cart-container">
   <% if !(@products.nil?) %>
-  <table class="w-100">
-    <thead>
-      <th></th>
-      <th></th>
+  <table class="table  table-hover">
+    <thead class="text-center">
+      <th class="text-start">Items</th>
+      <th>Weight</th>
       <th>Qty</th>
       <th>Rate</th>
       <th>Total</th>
@@ -14,12 +14,12 @@
     <tbody>
       <% @product_list.each do |item| %>
       <tr>
-        <td><%= @products[item.product_id].first.product_name %></td>
+        <td class="bg-secondary text-light"><%= @products[item.product_id].first.product_name %></td>
         <td class="text-center"><%= format_weight(@products[item.product_id].first.product_weight) %></td>
         <td class="text-center">
-        <span><%= link_to "-", remove_product_path(item.product_id), class: "btn-action" %></span>
+        <span><%= link_to "-", remove_product_path(item.product_id), class: "btn btn-outline-dark btn-sm" %></span>
         <%= item.product_quantity %>
-        <span><%= link_to "+", add_product_path(item.product_id), class: "btn-action" %></span>
+        <span><%= link_to "+", add_product_path(item.product_id), class: "btn btn-outline-dark btn-sm" %></span>
         </td>
         <td class="text-center">$<%= @products[item.product_id].first.product_price %></td>
         <td class="text-center">$<%= (@products[item.product_id].first.product_price) * (item.product_quantity) %></td>
@@ -29,17 +29,17 @@
         <td></td>
         <td></td>
         <td></td>
-        <td class="text-center">Total:</td>
+        <td class="text-center bg-dark text-light">Total:</td>
         <td class="text-center">$<%= @cart_total %></td>
       </tr>
       <tr>
         <td></td>
         <td></td>
         <td></td>
-        <td class="text-center">GST:</td>
+        <td class="text-center  bg-dark text-light">GST:</td>
         <td class="text-center">+<%= (gst_included_price(@cart_total) - @cart_total) %> </td>
       </tr>
-      <tr>
+      <tr class="bg-light  text-center">
         <th class="text-start">Total to pay</th>
         <td></td>
         <td></td>
@@ -49,11 +49,11 @@
 
     </tbody>
   </table>
-    <div class="text-center my-1">
-     <%= link_to "Place Order", place_order_path, class: "btn bg-danger" %>
+    <div class="text-center my-4">
+     <%= link_to "Place Order", place_order_path, class: "btn btn-outline-dark" %>
      </div>
   <% end %>
 </div>
 <div class="text-center">
-  <%= link_to "Continue shopping", root_path, class: "btn" %>
+  <%= link_to "Continue shopping", root_path, class: "btn btn-outline-danger" %>
   </div>

@@ -1,6 +1,6 @@
             <tr>
                 <th>
-                    <%= link_to order.id, order_path(order.id) %>
+                    <%= link_to order.id, order_path(order.id),class:'btn btn-outline-dark' %>
                 </th>
                 <th>
                     <%= order.created_at.to_s.split(" ")[0].split("-").reverse.join("-") %>
@@ -8,5 +8,5 @@
                 <td>
                     $<%= order.order_total + order.order_tax %>
                 </td>
-                <td><button class="btn" type="button">Processing</button></td>
+                <td><button class="btn btn-primary" type="button">Processing</button></td>
             </tr>

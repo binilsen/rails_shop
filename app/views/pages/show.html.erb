@@ -1,35 +1,50 @@
 <%= content_for :title, "Shop | #{@product.product_name}" %>
 
-<div class="row  w-100 my-50">
-   <div class="card w-100">
-        <h1>
+
+<div class="d-flex flex-column justify-content-center">
+    <div class="row my-4">
+        <h2 class="fs-2">
             <%= @product.product_name %>
-        </h1>
-        <hr>
-        <div class="row">
-            <h5 class="w-100">Product Description:</h5>
-            <h5 class="text-justify bg-danger p-2 rounded"><%= @product.product_title %></h5>
-        </div>
-        <hr>
-        <div class="row justify-content-between">
-            <h5>Weight</h5>
-            <h2><%= format_weight(@product.product_weight) %></h2>
-        </div>
-        <div class="row justify-content-between">
-            <h5>Price</h5>
-            <h2>
-                $<%= @product.product_price %>
-            </h2>
-        </div>
-   </div>
-   <div class="card w-100">
-        <div class="col">
-            <div class="my-1">
-                <%= link_to "Buy now", buy_now_path(@product.id), class: "btn" %>
+        </h2>
+    </div>
+    <hr>
+    <div class="row  rounded bg-light shadow p-1">
+        <div class="col-sm-6  pe-4 border-warning border-end my-2">
+            <div class="row border-bottom">
+                <p class="lead fs-4 col-sm-6">Product Description:</p>
+                <p class="lead  text-center shadow p-1 rounded col-sm-6">
+                    <%= @product.product_title %>
+                </p>
             </div>
-            <div class="my-1">
-              <%= link_to "Add to Cart", add_product_path(@product.id), class: "btn" %>
+            <div class="row border-bottom p-2">
+                <p class="lead col-sm-6">Weight:</p>
+                <div class="col-sm-6 text-end ">
+                    <button class="btn btn-outline-dark fs-4">
+                        <%= format_weight(@product.product_weight) %>
+                    </button>
+                </div>
+            </div>
+            <div class="row  p-2">
+                <p class="lead col-sm-6">Price:</p>
+                <div class="col-sm-6 text-end">
+                    <button class=" btn btn-outline-dark fs-4">
+                        $<%= @product.product_price %>
+                    </button>
+                </div>
             </div>
         </div>
-   </div>
+        <div class="col-sm-6 my-2">
+            <div class=" d-flex h-100 flex-column  justify-content-center">
+                <div class="row text-center">
+                    <div class="col-sm-6 my-1">
+                        <%= link_to "Buy now" , buy_now_path(@product.id), class: "btn btn-outline-danger btn-lg w-100  " %>
+                    </div>
+                    <div class=" col-sm-6 my-1">
+                        <%= link_to "Add to Cart" , add_product_path(@product.id),
+                            class: "btn btn-outline-primary btn-lg  w-100" %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

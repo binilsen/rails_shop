@@ -1,38 +1,39 @@
 <%= content_for :title, "Shop | Order | #{@order.id}" %>
-<h2 class="mt-4">Order Details</h2>
+<div class="vh-100">
+<h2 class="mt-4 fw-light">Order Details</h2>
 <hr>
-<div class="row  p-2">
-    <div class="left  mx-1 w-100">
-        <div class="row my-1 w-100">
-            <p class="fs-5 w-100">Order id:</p>
-            <p class="fs-5 w-100 bg-secondary rounded text-center">
+<div class="row   p-2">
+    <div class="col-sm-6 border-bottom">
+        <div class="row">
+            <p class="col-sm-6">Order id:</p>
+            <p class="col-sm-6 lead  rounded text-center">
                 <%= @order.id %>
             </p>
         </div>
-        <div class="row my-1 w-100">
-            <p class="fs-5 w-100">Ordered date:</p>
-            <p class="fs-5 w-100 bg-secondary rounded text-center">
+        <div class="row">
+            <p class="col-sm-6">Ordered date:</p>
+            <p class="col-sm-6 lead text-center">
                 <%= @order.updated_at.to_s.slice(0, 10) %>
             </p>
         </div>
     </div>
-    <div class="right w-100">
-        <div class="row my-1 w-100">
-            <p class="fs-5 w-100">Status:</p>
-            <p class="fs-5 w-100 bg-danger rounded  text-center">Processing</p>
+    <div class="col-sm-6 border-bottom">
+        <div class="row ">
+            <p class="col-sm-6">Status:</p>
+            <p class="col-sm-6 bg-danger text-light rounded text-center">Processing</p>
         </div>
-        <div class="row my-1 w-100">
-            <p class="fs-5 w-100">Order Total:</p>
-            <p class="fs-5 w-100 bg-secondary rounded text-center">$<%= (@order.order_total + @order.order_tax) %>
+        <div class="row ">
+            <p class="col-sm-6">Order Total:</p>
+            <p class="col-sm-6 lead text-center border p-2 border-info rounded shadow fw-bold">$<%= (@order.order_total + @order.order_tax) %>
             </p>
         </div>
     </div>
 </div>
-<h3 class="mt-4">Items in this order</h3>
+<h3 class="mt-4 fw-light">Items in this order</h3>
 <hr>
-<div class="p-2">
-    <table class="w-100">
-        <thead class="bg-secondary">
+<div class="p-2 table-responsive">
+    <table class="table table-hover  table-striped">
+        <thead class="bg-secondary text-white text-center">
             <tr>
                 <th>Item</th>
                 <th>Price (1 item)</th>
@@ -44,7 +45,7 @@
             <% @cart.each do |item| %>
                 <tr>
                     <td>
-                        <%= link_to @products[item.product_id].first.product_name + " " + format_weight(@products[item.product_id].first.product_weight), product_path(item.product_id) %>
+                        <%= link_to @products[item.product_id].first.product_name + " " + format_weight(@products[item.product_id].first.product_weight), product_path(item.product_id),class:'text-decoration-none' %>
                     </td>
                     <td class="text-center">$<%= @products[item.product_id].first.product_price %></td>
                     <td class="text-center"><%= (item.product_quantity) %></td>
@@ -59,3 +60,7 @@
     </tbody>
   </table>
 </div
+
+
+
+</div>
