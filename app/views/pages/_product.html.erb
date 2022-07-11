@@ -10,7 +10,7 @@
         </div>
         <div class="row">
           <p class="col-6 small">Price</p>
-          <p class=" lead col-6 text-end text-danger">$<%= product.product_price %>
+          <p class=" lead col-6 text-end text-danger"><%= number_to_currency(product.product_price) %>
           </p>
         </div>
         <p class="card-text">

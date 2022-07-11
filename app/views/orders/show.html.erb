@@ -45,11 +45,11 @@
             <% @cart.each do |item| %>
                 <tr>
                     <td>
-                        <%= link_to @products[item.product_id].first.product_name + " " + format_weight(@products[item.product_id].first.product_weight), product_path(item.product_id),class:'text-decoration-none' %>
+                        <%= link_to item.product.product_name + " " + format_weight(item.product.product_weight), product_path(item.product_id),class:'text-decoration-none' %>
                     </td>
-                    <td class="text-center">$<%= @products[item.product_id].first.product_price %></td>
+                    <td class="text-center">$<%= item.product.product_price %></td>
                     <td class="text-center"><%= (item.product_quantity) %></td>
-                    <td class="text-center">$<%= (@products[item.product_id].first.product_price) * (item.product_quantity) %></td>
+                    <td class="text-center">$<%= (item.product.product_price) * (item.product_quantity) %></td>
                 </tr>
                 <% end %>
                 <tr>

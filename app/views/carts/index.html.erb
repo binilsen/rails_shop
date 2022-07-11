@@ -12,17 +12,17 @@
     </thead>
 
     <tbody>
-      <% @product_list.each do |item| %>
+      <% @products.carts_products.each do |item| %>
       <tr>
-        <td class="bg-secondary text-light"><%= @products[item.product_id].first.product_name %></td>
-        <td class="text-center"><%= format_weight(@products[item.product_id].first.product_weight) %></td>
+        <td class="bg-secondary text-light"><%= item.product.product_name %></td>
+        <td class="text-center"><%= format_weight(item.product.product_weight) %></td>
         <td class="text-center">
         <span><%= link_to "-", remove_product_path(item.product_id), class: "btn btn-outline-dark btn-sm" %></span>
         <%= item.product_quantity %>
         <span><%= link_to "+", add_product_path(item.product_id), class: "btn btn-outline-dark btn-sm" %></span>
         </td>
-        <td class="text-center">$<%= @products[item.product_id].first.product_price %></td>
-        <td class="text-center">$<%= (@products[item.product_id].first.product_price) * (item.product_quantity) %></td>
+        <td class="text-center">$<%=item.product.product_price %></td>
+        <td class="text-center">$<%= (item.product.product_price) * (item.product_quantity) %></td>
       </tr>
       <% end %>
        <tr>

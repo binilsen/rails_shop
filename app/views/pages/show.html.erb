@@ -28,7 +28,7 @@
                 <p class="lead col-sm-6">Price:</p>
                 <div class="col-sm-6 text-end">
                     <button class=" btn btn-outline-dark fs-4">
-                        $<%= @product.product_price %>
+                        <%= number_to_currency(@product.product_price) %>
                     </button>
                 </div>
             </div>

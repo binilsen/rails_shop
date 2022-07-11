@@ -2,13 +2,11 @@
 
 Dummy Shopping App using rails 
 
-Things you may want to cover:
-
 * Rails-7.0.3
 
 * Ruby-3.1.1
 
-* Additional gems: devise
+* Additional gems: devise,bootstrap
 
 * Run  bundle/bundle install 
 

@@ -4,6 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :rememberable, :validatable
   has_many :carts
-  has_many :carts_products
   has_many :orders
 end
