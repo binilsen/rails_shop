@@ -21,8 +21,8 @@
         <%= item.product_quantity %>
         <span><%= link_to "+", add_product_path(item.product_id), class: "btn btn-outline-dark btn-sm" %></span>
         </td>
-        <td class="text-center">$<%=item.product.product_price %></td>
-        <td class="text-center">$<%= (item.product.product_price) * (item.product_quantity) %></td>
+        <td class="text-center"><%=number_to_currency(item.product.product_price) %></td>
+        <td class="text-center"><%= number_to_currency((item.product.product_price) * (item.product_quantity)) %></td>
       </tr>
       <% end %>
        <tr>
@@ -30,21 +30,21 @@
         <td></td>
         <td></td>
         <td class="text-center bg-dark text-light">Total:</td>
-        <td class="text-center">$<%= @cart_total %></td>
+        <td class="text-center"><%=number_to_currency(@cart_total) %></td>
       </tr>
       <tr>
         <td></td>
         <td></td>
         <td></td>
         <td class="text-center  bg-dark text-light">GST:</td>
-        <td class="text-center">+<%= (gst_included_price(@cart_total) - @cart_total) %> </td>
+        <td class="text-center">+<%=number_to_currency((order_gst(@cart_total))) %> </td>
       </tr>
       <tr class="bg-light  text-center">
         <th class="text-start">Total to pay</th>
         <td></td>
         <td></td>
         <td></td>
-        <td class="text-center">$<%= gst_included_price(@cart_total) %></td>
+        <td class="text-center"><%= number_to_currency(@cart_total) %></td>
       </tr>
 
     </tbody>

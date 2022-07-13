@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:order_id])
-    @cart = Cart.find(@order.cart_id).carts_products.all
+    @cart = @order.orders_products.all
   end
 
   def buy_now
@@ -18,16 +18,17 @@ class OrdersController < ApplicationController
 
   def place_order
     get_cart = create_cart
-    Order.create(id: Time.now.to_i, cart_id: get_cart.id, order_total: get_cart.cart_total, order_tax: get_tax(get_cart.cart_total), user_id: current_user.id)
+    order = Order.create(id: Time.now.to_i, user_id: current_user.id, total: get_cart.cart_total)
+    products = get_cart.carts_products
+    products.each do |cart_item|
+      OrdersProduct.create(order_id: order.id, product_id: cart_item.product_id, quantity: cart_item.product_quantity)
+    end
     flash[:status] = "Order Successfully Placed." if get_cart.update(processed: true)
+    get_cart.destroy
     redirect_to root_path
   end
 
   private
-
-  def get_tax(amount)
-    return ((amount * 1.05) - amount).round
-  end
 
   def get_cart(id)
     Cart.find(id)

@@ -9,6 +9,13 @@ class CartsController < ApplicationController
     @products.carts_products.each do |item|
       @cart_total += (item.product.product_price * item.product_quantity)
     end
-    current_cart.update(cart_total: @cart_total)
+    @cart_total += get_tax(@cart_total)
+    current_cart.update(cart_total: (@cart_total))
+  end
+
+  private
+
+  def get_tax(amount)
+    return ((amount * 1.05) - amount).round
   end
 end

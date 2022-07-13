@@ -24,7 +24,7 @@
         </div>
         <div class="row ">
             <p class="col-sm-6">Order Total:</p>
-            <p class="col-sm-6 lead text-center border p-2 border-info rounded shadow fw-bold">$<%= (@order.order_total + @order.order_tax) %>
+            <p class="col-sm-6 lead text-center border p-2 border-info rounded shadow fw-bold">$<%= (@order.total) %>
             </p>
         </div>
     </div>
@@ -48,14 +48,14 @@
                         <%= link_to item.product.product_name + " " + format_weight(item.product.product_weight), product_path(item.product_id),class:'text-decoration-none' %>
                     </td>
                     <td class="text-center">$<%= item.product.product_price %></td>
-                    <td class="text-center"><%= (item.product_quantity) %></td>
-                    <td class="text-center">$<%= (item.product.product_price) * (item.product_quantity) %></td>
+                    <td class="text-center"><%= (item.quantity) %></td>
+                    <td class="text-center">$<%= (item.product.product_price) * (item.quantity) %></td>
                 </tr>
                 <% end %>
                 <tr>
                     <th>Tax(GST)</th>
                     <td colspan="2"></td>
-                    <td>+$<%= @order.order_tax %></td>
+                    <td><%=number_to_currency(order_gst(@order.total))%></td>
                 </tr>
     </tbody>
   </table>

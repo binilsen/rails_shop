@@ -6,7 +6,7 @@
                     <%= order.created_at.to_s.split(" ")[0].split("-").reverse.join("-") %>
                 </th>
                 <td>
-                    $<%= order.order_total + order.order_tax %>
+                    $<%= order.total %>
                 </td>
                 <td><button class="btn btn-primary" type="button">Processing</button></td>
             </tr>
