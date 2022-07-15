@@ -1,6 +1,4 @@
 class CartsController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     current_cart = create_cart
     return if (current_cart.nil? || current_cart.carts_products.empty?)

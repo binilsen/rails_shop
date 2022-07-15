@@ -1,6 +1,4 @@
 class CartsProductsController < ApplicationController
-  before_action :authenticate_user!
-
   def add_product
     get_cart = create_cart
     get_cart = create_cart(true) if get_cart.nil?
@@ -20,9 +18,7 @@ class CartsProductsController < ApplicationController
     check_cart_exist = CartsProduct.find_by(cart_id: get_cart.id, product_id: params[:product_id])
     if check_cart_exist.product_quantity == 1
       CartsProduct.destroy(check_cart_exist.id)
-      if CartsProduct.find_by(cart_id: get_cart.id).nil?
-        Cart.destroy_by(id: get_cart.id)
-      end
+      Cart.destroy_by(id: get_cart.id) if CartsProduct.find_by(cart_id: get_cart.id).nil?
     end
     if check_cart_exist.product_quantity >= 1
       check_cart_exist.product_quantity -= 1

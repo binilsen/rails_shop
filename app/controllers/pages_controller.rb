@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
-  attr_reader :products, :cart_total
+  skip_before_action :authenticate_user!
+
   def index
     @products = Product.all
   end
