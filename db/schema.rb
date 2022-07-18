@@ -10,15 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_28_125412) do
-  create_table "carts", primary_key: "cart_id", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2022_07_13_122357) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "processed", default: false
+    t.integer "cart_total", default: 0
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_carts_on_user_id"
   end
 
   create_table "carts_products", force: :cascade do |t|
-    t.integer "product_id"
-    t.integer "cart_id"
+    t.bigint "product_id"
+    t.bigint "cart_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "product_quantity", default: 1
@@ -26,7 +33,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_125412) do
     t.index ["product_id"], name: "index_carts_products_on_product_id"
   end
 
-  create_table "products", primary_key: "product_id", force: :cascade do |t|
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.integer "order_status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "total", default: 0
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "orders_products", force: :cascade do |t|
+    t.bigint "order_id"
+    t.bigint "product_id"
+    t.integer "quantity"
+    t.index ["order_id"], name: "index_orders_products_on_order_id"
+    t.index ["product_id"], name: "index_orders_products_on_product_id"
+  end
+
+  create_table "products", force: :cascade do |t|
     t.string "product_name"
     t.text "product_title"
     t.integer "product_weight"
@@ -35,4 +59,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_06_28_125412) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  add_foreign_key "carts", "users"
+  add_foreign_key "orders", "users"
 end

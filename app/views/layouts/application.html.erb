@@ -1,15 +1,83 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Shop</title>
+    <title><%=yield :title%></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <%= favicon_link_tag 'logo.ico'%>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
   </head>
 
   <body>
+  <nav class="navbar navbar-expand-sm navbar-light shadow p-3 bg-light">
+      <div class="container">
+      <a class="navbar-brand" href="/">Rails Shop</a>
+      <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <ul class="navbar-nav ms-auto mt-2 mt-lg-0 fw-bold">
+        <li class="nav-item">
+           <%= link_to "Home", root_path,class:'nav-link' %>
+          </li>
+          <li class="nav-item">
+             <%= link_to "Cart", cart_path,class:'nav-link' %>
+          </li>
+          <%if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "My Account", users_path,class:'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= button_to "Logout", destroy_user_session_path,class:'btn btn-danger', method: :delete%>          
+            </li>
+          <%else%>
+          <li class="nav-item">
+             <%= link_to "Register", new_user_registration_path,class:'nav-link' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Login", new_user_session_path ,class:'nav-link' %>
+          </li>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+
+    <div class="error my-4">
+      <%if flash[:status] %>
+        <div class="status w-50 text-center text-light m-auto p-2  rounded bg-danger">
+          <h4>
+            <%=flash[:status]%>
+          </h4>
+        </div>
+        <%end%>
+          <%if notice %>
+            <div class="status w-50 text-center m-auto  text-light p-2 rounded bg-danger">
+              <h4>
+                <%=notice%>
+              </h4>
+            </div>
+            <%end%>
+              <%if alert %>
+                <div class="status w-50 text-center m-auto text-light  p-2 rounded bg-danger">
+                  <h4>
+                    <%=alert%>
+                  </h4>
+                </div>
+                <%end%>
+    </div>
+    <div class="container min-vh-100">
     <%= yield %>
+    </div>
+      <footer class="p-4 footer sticky shadow  bg-dark mt-2">
+        <div class="d-flex justify-content-center">
+          <h4 class="fs-3 border border-light p-2 bg-light rounded ">copyright@<%=Time.current.year%></h4>
+        </div>
+      </footer>
+
   </body>
 </html>

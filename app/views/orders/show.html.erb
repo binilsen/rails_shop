@@ -1,0 +1,63 @@
+<%= content_for :title, "Shop | Order | #{@order.id}" %>
+<div class="min-vh-100">
+<h2 class="mt-4 fw-light">Order Details</h2>
+<hr>
+<div class="row   p-2">
+    <div class="col-sm-6 border-bottom">
+        <div class="row">
+            <p class="col-sm-6">Order id:</p>
+            <p class="col-sm-6 lead  rounded text-center">
+                <%= @order.id %>
+            </p>
+        </div>
+        <div class="row">
+            <p class="col-sm-6">Ordered date:</p>
+            <p class="col-sm-6 lead text-center">
+                <%= @order.updated_at.to_s.slice(0, 10) %>
+            </p>
+        </div>
+    </div>
+    <div class="col-sm-6 border-bottom">
+        <div class="row ">
+            <p class="col-sm-6">Status:</p>
+            <p class="col-sm-6 bg-danger text-light rounded text-center">Processing</p>
+        </div>
+        <div class="row ">
+            <p class="col-sm-6">Order Total:</p>
+            <p class="col-sm-6 lead text-center border p-2 border-info rounded shadow fw-bold">$<%= (@order.total) %>
+            </p>
+        </div>
+    </div>
+</div>
+<h3 class="mt-4 fw-light">Items in this order</h3>
+<hr>
+<div class="p-2 table-responsive">
+    <table class="table table-hover  table-striped">
+        <thead class="bg-secondary text-white text-center">
+            <tr>
+                <th>Item</th>
+                <th>Price (1 item)</th>
+                <th>Quantity</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody class="text-center">
+            <% @cart.each do |item| %>
+                <tr>
+                    <td>
+                        <%= link_to item.product.product_name + " " + format_weight(item.product.product_weight), product_path(item.product_id),class:'text-decoration-none' %>
+                    </td>
+                    <td class="text-center">$<%= item.product.product_price %></td>
+                    <td class="text-center"><%= (item.quantity) %></td>
+                    <td class="text-center">$<%= (item.product.product_price) * (item.quantity) %></td>
+                </tr>
+                <% end %>
+                <tr>
+                    <th>Tax(GST)</th>
+                    <td colspan="2"></td>
+                    <td><%=number_to_currency(order_gst(@order.total))%></td>
+                </tr>
+    </tbody>
+  </table>
+</div>
+</div>

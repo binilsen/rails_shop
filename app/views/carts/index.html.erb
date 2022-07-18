@@ -1,0 +1,59 @@
+<%= content_for :title, "Shop | Cart" %>
+
+<div class="cart-container">
+  <% if !(@cart.nil?) %>
+  <table class="table  table-hover">
+    <thead class="text-center">
+      <th class="text-start">Items</th>
+      <th>Weight</th>
+      <th>Qty</th>
+      <th>Rate</th>
+      <th>Total</th>
+    </thead>
+
+    <tbody>
+      <% @cart.carts_products.each do |item| %>
+      <tr>
+        <td class="bg-secondary text-light"><%= item.product.product_name %></td>
+        <td class="text-center"><%= format_weight(item.product.product_weight) %></td>
+        <td class="text-center">
+        <span><%= link_to "-", remove_product_path(item.product_id), class: "btn btn-outline-dark btn-sm" %></span>
+        <%= item.product_quantity %>
+        <span><%= link_to "+", add_product_path(item.product_id), class: "btn btn-outline-dark btn-sm" %></span>
+        </td>
+        <td class="text-center"><%=number_to_currency(item.product.product_price) %></td>
+        <td class="text-center"><%= number_to_currency((item.product.product_price) * (item.product_quantity)) %></td>
+      </tr>
+      <% end %>
+       <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="text-center bg-dark text-light">Total:</td>
+        <td class="text-center"><%=number_to_currency(@cart_total) %></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="text-center  bg-dark text-light">GST:</td>
+        <td class="text-center">+<%=number_to_currency((order_gst(@cart_total))) %> </td>
+      </tr>
+      <tr class="bg-light  text-center">
+        <th class="text-start">Total to pay</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td class="text-center"><%= number_to_currency(@cart_total) %></td>
+      </tr>
+
+    </tbody>
+  </table>
+    <div class="text-center my-4">
+     <%= link_to "Place Order", place_order_path, class: "btn btn-outline-dark" %>
+     </div>
+  <% end %>
+</div>
+<div class="text-center">
+  <%= link_to "Continue shopping", root_path, class: "btn btn-outline-danger" %>
+  </div>
