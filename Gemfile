@@ -30,6 +30,15 @@ gem "stimulus-rails"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+# omniauth : standard lib for multiple authentication
+gem 'omniauth', '~> 2.1'
+
+# new omniauth standard: post request only for security 
+gem 'omniauth-rails_csrf_protection', '~> 1.0', '>= 1.0.1'
+
+# google auth provider 
+gem 'omniauth-google-oauth2', '~> 1.0', '>= 1.0.1'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
