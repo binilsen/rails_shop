@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
+# base controller
 class ApplicationController < ActionController::Base
   before_action :authenticate_user!
-  def create_cart(flag = false)
+  def create_cart(flag: false)
     if flag
       @cart = Cart.new
       @cart.user_id = current_user.id
