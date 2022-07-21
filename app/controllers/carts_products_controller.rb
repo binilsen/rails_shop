@@ -11,18 +11,18 @@ class CartsProductsController < ApplicationController
 
   def remove_product
     get_cart = create_cart
-    check_product_exist = get_cart.carts_products.find_by(product_id: params[:product_id])
-    Cart.destroy_by(id: get_cart.id) if check_product_exist.product_quantity == 1
-    cart_update(check_product_exist, add: false) if check_product_exist.product_quantity > 1
+    product = get_cart.carts_products.find_by(product_id: params[:product_id])
+    remove_product_from_cart(get_cart, product)
+    cart_update(product, add: false) if product.product_quantity > 1
     redirect_to cart_path
   end
 
   private
 
   def check_for_product_and_add(cart)
-    check_product_exist = cart.carts_products.find_by(product_id: params[:product_id])
-    if check_product_exist
-      cart_update(check_product_exist)
+    product = cart.carts_products.find_by(product_id: params[:product_id])
+    if product
+      cart_update(product)
     else
       CartsProduct.create(product_id: params[:product_id], cart_id: cart.id)
     end
@@ -33,6 +33,13 @@ class CartsProductsController < ApplicationController
       product.update(product_quantity: product.product_quantity + 1)
     else
       product.update(product_quantity: product.product_quantity - 1)
+    end
+  end
+
+  def remove_product_from_cart(cart, product)
+    if product.product_quantity == 1 && (CartsProduct.destroy product.id) \
+       && (CartsProduct.find_by cart_id: cart.id).nil?
+      Cart.destroy_by(id: cart.id)
     end
   end
 end
