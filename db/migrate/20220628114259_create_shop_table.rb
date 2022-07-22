@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# create cart product table with has_many:through association
 class CreateShopTable < ActiveRecord::Migration[7.0]
   def change
     create_table :products do |t|
@@ -8,9 +11,7 @@ class CreateShopTable < ActiveRecord::Migration[7.0]
       t.timestamps
     end
 
-    create_table :carts do |t|
-      t.timestamps
-    end
+    create_table :carts, &:timestamps
     create_table :carts_products do |t|
       t.belongs_to :product
       t.belongs_to :cart
