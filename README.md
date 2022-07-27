@@ -6,11 +6,11 @@ Dummy Shopping App using rails
 
 * Ruby-3.1.2
 
-* Additional gems: devise,bootstrap,pg,omiauth,omniauth_google_oauth2
+* Additional gems: devise,bootstrap,mongoid,omiauth,omniauth_google_oauth2
 
-* Database: Postgresql 
+* Database: mongodb 
 
 * Run  bundle/bundle install 
 
-* Run # rails db:migrate # rails db:seed # .
+* Run   rails db:seed  .
 

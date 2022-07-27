@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
-class OrdersProduct < ApplicationRecord
-  belongs_to :order
-  belongs_to :product
+class OrdersProduct
+  include Mongoid::Document
+  field :quantity, type: Integer
+  belongs_to :order, index: true
+  belongs_to :product, index: true
 end

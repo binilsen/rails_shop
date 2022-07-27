@@ -1,6 +1,6 @@
             <tr>
                 <th>
-                    <%= link_to order.id, order_path(order.id),class:'btn btn-outline-dark' %>
+                    <%= link_to order.id, order_path(order.id),class:'btn btn-outline-dark text-uppercase' %>
                 </th>
                 <th>
                     <%= order.created_at.to_s.split(" ")[0].split("-").reverse.join("-") %>

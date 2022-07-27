@@ -1,9 +1,12 @@
 # frozen_string_literal: true
 
-class Product < ApplicationRecord
+class Product
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  field :product_name, type: String
+  field :product_title, type: String
+  field :product_price, type: Float
+  field :product_weight, type: Integer
   has_many :carts_products
-  has_many :carts, through: :carts_products
-
   has_many :orders_products
-  has_many :orders, through: :orders_products
 end

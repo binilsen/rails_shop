@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
-class Cart < ApplicationRecord
+class Cart
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  field :processed, type: Boolean, default: false
+  field :cart_total, type: Integer, default: 0
   has_many :carts_products, dependent: :destroy
-  has_many :products, through: :carts_products
-  belongs_to :user
+  belongs_to :user, index: true
 end

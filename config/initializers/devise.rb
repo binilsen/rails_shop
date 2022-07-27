@@ -37,7 +37,7 @@ Devise.setup do |config|
   # Load and configure the ORM. Supports :active_record (default) and
   # :mongoid (bson_ext recommended) by default. Other ORMs may be
   # available as additional gems.
-  require 'devise/orm/active_record'
+  require 'devise/orm/mongoid'
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is
@@ -273,8 +273,8 @@ Devise.setup do |config|
   # ==> OmniAuth
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
-  config.omniauth :google_oauth2, Rails.application.credentials.omniauth[:GOOGLE_CLIENT_ID],
-                  Rails.application.credentials.omniauth[:GOOGLE_CLIENT_SECRET], {}
+  config.omniauth :google_oauth2, Rails.application.credentials.omniauth[:GOOGLE_CLIENT_ID_DOCKER],
+                  Rails.application.credentials.omniauth[:GOOGLE_CLIENT_SECRET_DOCKER], {}
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

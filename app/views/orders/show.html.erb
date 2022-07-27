@@ -6,14 +6,14 @@
     <div class="col-sm-6 border-bottom">
         <div class="row">
             <p class="col-sm-6">Order id:</p>
-            <p class="col-sm-6 lead  rounded text-center">
+            <p class="col-sm-6 lead text-uppercase rounded text-center">
                 <%= @order.id %>
             </p>
         </div>
         <div class="row">
             <p class="col-sm-6">Ordered date:</p>
             <p class="col-sm-6 lead text-center">
-                <%= @order.updated_at.to_s.slice(0, 10) %>
+                <%= @order.created_at.to_s.slice(0, 10) %>
             </p>
         </div>
     </div>

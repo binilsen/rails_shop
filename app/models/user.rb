@@ -1,7 +1,15 @@
 # frozen_string_literal: true
 
 # user model for devise
-class User < ApplicationRecord
+class User
+  include Mongoid::Document
+  include Mongoid::Timestamps
+  field :email, type: String, default: ''
+  field :encrypted_password, type: String, default: ''
+  field :reset_password_token, type: String
+  field :reset_password_sent_at, type: DateTime
+  field :remember_created_at, type: DateTime
+  index({ email: 1, reset_password_token: 1 }, { unique: true })
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
