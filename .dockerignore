@@ -1,5 +1,5 @@
 # precompile assets
-/public/assets
+# /public/assets
 
 # env files
 master.env

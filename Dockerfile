@@ -16,13 +16,13 @@ COPY Gemfile.lock /shop/Gemfile.lock
 RUN bundle install --without development:test
 
 # env 
-ENV RAILS_ENV=true 
+# ENV RAILS_ENV=true 
 
-ENV RAILS_SERVE_STATIC_FILES=true 
+# ENV RAILS_SERVE_STATIC_FILES=true 
 
-ENV RAILS_MASTER_KEY=key
+# ENV RAILS_MASTER_KEY=key
 
-ENV RAILS_LOG_TO_STDOUT=true 
+# ENV RAILS_LOG_TO_STDOUT=true 
 
 COPY . /shop
 
