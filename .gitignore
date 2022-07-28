@@ -6,7 +6,8 @@
 
 # Ignore bundler config.
 /.bundle
-
+# env file 
+.env
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-*
@@ -35,3 +36,9 @@
 /config/master.key
 
 /.byebug_history
+
+# temp folder by docker 
+/temp 
+
+database.env
+master.env

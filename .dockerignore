@@ -1,0 +1,6 @@
+# precompile assets
+/public/assets
+
+# env files
+master.env
+database.env
