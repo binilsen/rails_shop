@@ -1,0 +1,41 @@
+<%= content_for :title, "Shop | #{current_user.email}" %>
+
+    <div class="row border shadow-lg p-4 rounded-4 m-3 ">
+        <div class="col-sm-2">
+            <div class="p-2 text-center">
+                <%= image_tag("user.svg", class: "img  img-fluid shadow rounded-pill" ,size:"150x100") %>
+            </div>
+        </div>
+        <div class="col-sm-6 text-center">
+            <h6 class="mb-2 border-bottom">Account Details</h6>
+            <div class="my-3 row">
+                <div class="col-sm-6">
+                    <p class="lead">Customer ID:</p>
+                </div>
+                <div class="col-sm-6">
+                    <p class="lead">
+                        <%=current_user.id %>
+                    </p>
+                </div>
+            </div>
+            <div class="my-3 row">
+                <div class="col-sm-6">
+                    <p class="lead">Email:</p>
+                </div>
+                <div class="col-sm-6">
+                    <button class="btn btn-outline-danger">
+                        <%=current_user.email %>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 text-center">
+            <h6 class="mb-2  border-bottom">Quick Links</h6>
+            <div class="d-flex flex-column h-100">
+                <div>
+                    <%= link_to "My Orders" ,user_orders_path(current_user.id), class: "btn mx-2 btn-danger" %>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>

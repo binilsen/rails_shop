@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_220_713_122_357) do
+ActiveRecord::Schema[7.0].define(version: 20_220_801_070_313) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -55,10 +55,19 @@ ActiveRecord::Schema[7.0].define(version: 20_220_713_122_357) do
   create_table 'products', force: :cascade do |t|
     t.string 'product_name'
     t.text 'product_title'
-    t.integer 'product_weight'
+    t.float 'product_weight'
     t.float 'product_price'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
+    t.bigint 'unit_id', null: false
+    t.index ['unit_id'], name: 'index_products_on_unit_id'
+  end
+
+  create_table 'units', force: :cascade do |t|
+    t.string 'name', null: false
+    t.string 'symbol'
+    t.index ['name'], name: 'index_units_on_name', unique: true
+    t.index ['symbol'], name: 'index_units_on_symbol'
   end
 
   create_table 'users', force: :cascade do |t|
@@ -72,5 +81,10 @@ ActiveRecord::Schema[7.0].define(version: 20_220_713_122_357) do
   end
 
   add_foreign_key 'carts', 'users'
+  add_foreign_key 'carts_products', 'carts'
+  add_foreign_key 'carts_products', 'products'
   add_foreign_key 'orders', 'users'
+  add_foreign_key 'orders_products', 'orders'
+  add_foreign_key 'orders_products', 'products'
+  add_foreign_key 'products', 'units'
 end

@@ -45,7 +45,7 @@
             <% @cart.each do |item| %>
                 <tr>
                     <td>
-                        <%= link_to item.product.product_name + " " + format_weight(item.product.product_weight), product_path(item.product_id),class:'text-decoration-none' %>
+                        <%= link_to item.product.product_name + " " + format_weight(item.product), product_path(item.product_id),class:'text-decoration-none' %>
                     </td>
                     <td class="text-center">$<%= item.product.product_price %></td>
                     <td class="text-center"><%= (item.quantity) %></td>
@@ -55,7 +55,7 @@
                 <tr>
                     <th>Tax(GST)</th>
                     <td colspan="2"></td>
-                    <td><%=number_to_currency(order_gst(@order.total))%></td>
+                    <td><%=number_to_currency(tax(@order.total))%></td>
                 </tr>
     </tbody>
   </table>

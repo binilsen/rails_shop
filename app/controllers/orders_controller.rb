@@ -3,7 +3,7 @@
 # controller for managing user  order
 class OrdersController < ApplicationController
   def index
-    @orders = current_user.orders.order(id: :desc)
+    @orders = current_user.orders.order(created_at: :desc)
   end
 
   def show
@@ -19,7 +19,7 @@ class OrdersController < ApplicationController
 
   def place_order
     get_cart = create_cart
-    order = Order.create(id: Time.now.to_i, user_id: current_user.id, total: get_cart.cart_total)
+    order = Order.create(user_id: current_user.id, total: get_cart.cart_total)
     add_order_products(get_cart.carts_products, order)
     flash[:status] = 'Order Successfully Placed.' if get_cart.update(processed: true)
     get_cart.destroy

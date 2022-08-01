@@ -2,7 +2,7 @@
 
 # app helper
 module ApplicationHelper
-  def order_gst(amount)
-    (amount - (amount / 1.05)).round
+  def tax(amount)
+    (amount * 0.05).round
   end
 end

@@ -15,7 +15,7 @@
       <% @cart.carts_products.each do |item| %>
       <tr>
         <td class="bg-secondary text-light"><%= item.product.product_name %></td>
-        <td class="text-center"><%= format_weight(item.product.product_weight) %></td>
+        <td class="text-center"><%= format_weight(item.product) %></td>
         <td class="text-center">
         <span><%= link_to "-", remove_product_path(item.product_id), class: "btn btn-outline-dark btn-sm" %></span>
         <%= item.product_quantity %>
@@ -30,14 +30,14 @@
         <td></td>
         <td></td>
         <td class="text-center bg-dark text-light">Total:</td>
-        <td class="text-center"><%=number_to_currency(@cart_total) %></td>
+        <td class="text-center"><%=number_to_currency(@cart_total-tax(@cart_total)) %></td>
       </tr>
       <tr>
         <td></td>
         <td></td>
         <td></td>
         <td class="text-center  bg-dark text-light">GST:</td>
-        <td class="text-center">+<%=number_to_currency((order_gst(@cart_total))) %> </td>
+        <td class="text-center">+<%=number_to_currency(tax(@cart_total)) %> </td>
       </tr>
       <tr class="bg-light  text-center">
         <th class="text-start">Total to pay</th>

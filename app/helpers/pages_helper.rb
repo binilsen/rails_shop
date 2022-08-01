@@ -2,13 +2,11 @@
 
 # page helper containing methods for getting gst and converting weight
 module PagesHelper
-  def format_weight(weight)
-    return "#{weight} GM" if weight < 1000
-
-    "#{weight / 1000} KG"
+  def format_weight(product)
+    "#{product.product_weight} #{product.unit.symbol}"
   end
 
-  def gst_included_price(price)
-    (price * 1.05).round
-  end
+  # def gst_included_price(price)
+  #   (price * 0.05).round
+  # end
 end

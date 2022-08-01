@@ -4,7 +4,7 @@
 class CartsController < ApplicationController
   def index
     current_cart = create_cart
-    return if current_cart.nil? || current_cart.carts_products.empty?
+    return if current_cart.blank? || current_cart.carts_products.blank?
 
     @cart_total = 0
     @cart = current_cart
@@ -18,6 +18,6 @@ class CartsController < ApplicationController
   private
 
   def get_tax(amount)
-    ((amount * 1.05) - amount).round
+    (amount * 0.05).round
   end
 end
