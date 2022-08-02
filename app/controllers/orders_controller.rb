@@ -23,6 +23,7 @@ class OrdersController < ApplicationController
     add_order_products(get_cart.carts_products, order)
     flash[:status] = 'Order Successfully Placed.' if get_cart.update(processed: true)
     get_cart.destroy
+    session.delete(:cart_id)
     redirect_to root_path
   end
 

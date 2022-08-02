@@ -12,5 +12,7 @@ class ApplicationController < ActionController::Base
     else
       @cart = current_user.carts.order(id: :desc).find_by(processed: false)
     end
+    session[:cart_id] = @cart.id if @cart
+    @cart
   end
 end

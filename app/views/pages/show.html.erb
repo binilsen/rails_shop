@@ -39,10 +39,18 @@
                     <div class="col-sm-6 my-1">
                         <%= link_to "Buy now" , buy_now_product_path(@product.id), class: "btn btn-outline-danger btn-lg w-100  " %>
                     </div>
+
+                    <%if session[:cart_id] && user_products(@user_products).has_key?(@product.id)%>
+                     <div class=" col-sm-6 my-1">
+                        <%= link_to "Go to Cart" , carts_path,
+                            class: "btn btn-outline-primary btn-lg  w-100" %>
+                    </div>
+                    <%else%>
                     <div class=" col-sm-6 my-1">
                         <%= link_to "Add to Cart" , add_product_path(@product.id),
                             class: "btn btn-outline-primary btn-lg  w-100" %>
                     </div>
+                    <%end%>
                 </div>
             </div>
         </div>

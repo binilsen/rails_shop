@@ -2,25 +2,25 @@
 
 # controller managing cart item quantity
 class CartsProductsController < ApplicationController
-  def add_product
+  def add
     cart = create_cart
     cart = create_cart(flag: true) if cart.blank?
     check_and_add(cart)
-    redirect_to cart_path
+    redirect_back fallback_location: root_path
   end
 
-  def remove_product
+  def remove
     cart = create_cart
-    product = cart.carts_products.find_by(product_id: params[:product_id])
+    product = cart.carts_products.find_by(product_id: params[:id])
     remove_from_cart(cart, product)
     update_quantity(product, add: false) if product.product_quantity > 1
-    redirect_to cart_path
+    redirect_back fallback_location: root_path
   end
 
   private
 
   def check_and_add(cart)
-    product = cart.carts_products.find_by(product_id: params[:product_id])
+    product = cart.carts_products.find_by(product_id: params[:id])
     if product
       update_quantity(product)
     else
@@ -32,16 +32,15 @@ class CartsProductsController < ApplicationController
     if product.product_quantity == 1 && (CartsProduct.destroy product.id) \
        && (CartsProduct.find_by cart_id: cart.id).blank?
       Cart.destroy_by(id: cart.id)
+      session.delete(:cart_id)
     end
   end
 
   def update_quantity(product, add: true)
     if add
       product.update(product_quantity: product.product_quantity + 1)
-      product.product_quantity
     else
       product.update(product_quantity: product.product_quantity - 1)
-      product.product_quantity
     end
   end
 end
