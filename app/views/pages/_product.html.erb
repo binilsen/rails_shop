@@ -21,7 +21,8 @@
               <%= number_to_currency(product.product_price) %>
             </p>
           </div>
-            <div class="row justify-content-center p-4">
+          <%=turbo_frame_tag dom_id(product) do %>
+            <div class="row justify-content-center p-4" id=<%=dom_id(product)%>>
               <%if user_signed_in?%>
               <%if product_list.present? && product_list[product.id] %>
                 <div class="col-sm-2">
@@ -44,6 +45,7 @@
                 </div>
                 <%end%>   
             </div>
+            <%end%>
         </div>
     </div>
   </div>
