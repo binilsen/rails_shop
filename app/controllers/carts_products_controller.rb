@@ -24,7 +24,7 @@ class CartsProductsController < ApplicationController
     if product
       update_quantity(product)
     else
-      CartsProduct.create(product_id: params[:product_id], cart_id: cart.id)
+      CartsProduct.create(product_id: params[:id], cart_id: cart.id)
     end
   end
 
@@ -38,8 +38,10 @@ class CartsProductsController < ApplicationController
   def update_quantity(product, add: true)
     if add
       product.update(product_quantity: product.product_quantity + 1)
+      product.product_quantity
     else
       product.update(product_quantity: product.product_quantity - 1)
+      product.product_quantity
     end
   end
 end

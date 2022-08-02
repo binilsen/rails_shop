@@ -50,7 +50,7 @@
     </tbody>
   </table>
     <div class="text-center my-4">
-     <%= link_to "Place Order", place_order_path, class: "btn btn-outline-dark" %>
+     <%= link_to "Place Order", place_order_cart_path(@cart.id), class: "btn btn-outline-dark" %>
      </div>
   <% end %>
 </div>

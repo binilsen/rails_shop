@@ -2,5 +2,5 @@
 
 # controller for showing user account
 class UsersController < ApplicationController
-  def index; end
+  def show; end
 end

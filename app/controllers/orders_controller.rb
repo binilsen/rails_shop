@@ -7,14 +7,14 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = Order.find(params[:order_id])
+    @order = Order.find(params[:id])
     @cart = @order.orders_products.all
   end
 
   def buy_now
     new_cart = create_cart(flag: true)
     CartsProduct.create(product_id: params[:id], cart_id: new_cart.id)
-    redirect_to cart_path
+    redirect_to carts_path
   end
 
   def place_order

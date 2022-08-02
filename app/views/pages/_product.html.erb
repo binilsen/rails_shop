@@ -1,21 +1,36 @@
 <div class="col-sm-6  col-lg-4 my-1">
-  <div class="card bg-light text-dark shadow h-100 ">
+  <div class="card bg-light text-dark shadow h-100" %>
     <div class="card-body">
-      <h4 class="card-title">
-        <div class="row justify-content-between">
-          <p class="col-6 small">Weight</p>
-          <p class="col-6 text-end text-uppercase lead">
-            <%= format_weight(product) %>
-          </p>
+        <div class="card-title">
+         <div class="row">
+          <div class="col-sm-6">
+            <%= link_to truncate(product.product_name,length:16), product_path(product.id) ,class:'lead text-decoration-none fs-5' %>
+          </div>
+          <%if user_signed_in?%>
+          <div class="col-sm-6 d-flex justify-content-end align-items-center">
+                 <%=turbo_frame_tag  dom_id(product) do%>
+                 <%= link_to "-" , remove_product_path(product.id), class: "btn mx-2 btn-outline-danger d-inline-block" %>
+                 <button type="button" class="btn btn-primary"><%=''%></button>
+                <%= link_to "+" , add_product_path(product.id), class: "btn btn-outline-primary  d-inline-block" %>
+                <%end%>
+          </div>
+          <%end%>
+         </div>
         </div>
-        <div class="row">
-          <p class="col-6 small">Price</p>
-          <p class=" lead col-6 text-end text-danger"><%= number_to_currency(product.product_price) %>
-          </p>
+        <div class="card-text">
+          <div class="row justify-content-between">
+            <p class="col-6 small">Weight</p>
+            <p class="col-6 text-end lead">
+              <%= format_weight(product.product_weight) %>
+            </p>
+          </div>
+          <div class="row">
+            <p class="col-6 small">Price</p>
+            <p class=" lead col-6 text-end text-danger">
+              <%= number_to_currency(product.product_price) %>
+            </p>
+          </div>
         </div>
-        <p class="card-text">
-          <%= link_to product.product_name, product_path(product.id) ,class:'btn btn-outline-primary btn-lg w-100 ' %></h4>
-      </p>
     </div>
   </div>
 </div>
