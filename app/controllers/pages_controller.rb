@@ -16,6 +16,8 @@ class PagesController < ApplicationController
   private
 
   def cart_products
-    @user_products = Cart.find(session[:cart_id]).carts_products if session[:cart_id]
+    return unless current_user
+
+    @user_products = Cart.find(session[:cart_id]).carts_products unless create_cart.blank?
   end
 end
