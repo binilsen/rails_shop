@@ -1,6 +1,6 @@
 <%= content_for :title, "Shop | Cart" %>
 
-<div class="cart-container">
+<div class="cart-container" id="cart">
   <% if !(@cart.nil?) %>
   <table class="table  table-hover">
     <thead class="text-center">
@@ -13,16 +13,18 @@
 
     <tbody>
       <% @cart.carts_products.order(created_at: :asc).each do |item| %>
-      <tr>
+      <tr id=<%=dom_id(item.product)%>>
         <td class="bg-secondary text-light"><%= item.product.product_name %></td>
         <td class="text-center"><%= format_weight(item.product) %></td>
         <td class="text-center">
-        <span><%= link_to "-", remove_product_path(item.product_id), class: "btn btn-outline-dark btn-sm",data:{turbo: true} %></span>
-        <%= item.product_quantity %>
-        <span><%= link_to "+", add_product_path(item.product_id), class: "btn btn-outline-dark btn-sm",data:{turbo: true} %></span>
+          <div class="row justify-content-center">
+            <%= button_to "-", remove_product_path(item.product_id), class: "btn btn-outline-dark btn-sm",form:{class:'col-sm-4'},remote: true %>
+            <div id=<%=dom_id(item.product,'quantity')%>  class="col-sm-4"> <%= item.product_quantity %></div>
+            <%= button_to "+", add_product_path(item.product_id), class: "btn btn-outline-dark btn-sm", form:{class:'col-sm-4'},remote: true %>
+          </div>
         </td>
         <td class="text-center"><%=number_to_currency(item.product.product_price) %></td>
-        <td class="text-center"><%= number_to_currency((item.product.product_price) * (item.product_quantity)) %></td>
+        <td class="text-center" id=<%=dom_id(item.product,'total')%>><%= number_to_currency((item.product.product_price) * (item.product_quantity)) %></td>
       </tr>
       <% end %>
        <tr>
@@ -30,21 +32,21 @@
         <td></td>
         <td></td>
         <td class="text-center bg-dark text-light">Total:</td>
-        <td class="text-center"><%=number_to_currency(@cart_total-tax(@cart_total)) %></td>
+        <td class="text-center" id=<%=dom_id(@cart,'eff_total')%>><%=number_to_currency(@cart.cart_total-@cart.tax) %></td>
       </tr>
       <tr>
         <td></td>
         <td></td>
         <td></td>
         <td class="text-center  bg-dark text-light">GST:</td>
-        <td class="text-center">+<%=number_to_currency(tax(@cart_total)) %> </td>
+        <td class="text-center">+ <span id=<%=dom_id(@cart,'tax')%>><%=number_to_currency(@cart.tax) %></span> </td>
       </tr>
       <tr class="bg-light  text-center">
         <th class="text-start">Total to pay</th>
         <td></td>
         <td></td>
         <td></td>
-        <td class="text-center"><%= number_to_currency(@cart_total) %></td>
+        <td class="text-center" id=<%=dom_id(@cart)%>><%= number_to_currency(@cart.cart_total) %></td>
       </tr>
 
     </tbody>

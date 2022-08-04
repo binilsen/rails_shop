@@ -1,0 +1,19 @@
+<%unless @remove_product%>
+<div class="col-sm-2 p-1">
+    <%= button_to "-" , remove_product_path(@product.product.id), class: "btn mx-2 btn-outline-danger d-inline-block w-100" ,
+        remote: true%>
+</div>
+<div class="col-sm-8 text-center" id=<%=dom_id(@product.product,'home_quantity')%>>
+    <a href="<%=carts_url%>" target="_top">
+        <button type="button" class="btn btn-secondary">
+            On Cart <span class="badge bg-danger">
+                <%=@product.quantity%>
+            </span>
+        </button>
+    </a>
+</div>
+<%end%>
+<div class="col-sm-2 p-1">
+    <%= button_to "+" , add_product_path(@product.product.id), class: "btn btn-outline-primary  d-inline-block w-100" ,remote:
+        true %>
+</div>

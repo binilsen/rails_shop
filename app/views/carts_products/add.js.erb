@@ -1,0 +1,31 @@
+document.body.addEventListener('ajax:success', function (event) {
+
+  <%# #index page quantity controller %>
+  const homeQuantity = document.getElementById('home_quantity_product_<%=@product.product.id%>');
+
+  <%# quantity controller for cart page %>
+  const quantity = document.getElementById('quantity_product_<%=@product.product.id%>');
+  const product_total = document.getElementById('total_product_<%=@product.product.id%>');
+  const product = document.getElementById('<%=dom_id(@product.product)%>');
+  const cart_wo_tax = document.getElementById('eff_total_cart_<%=@cart.id%>');
+  const cart_total = document.getElementById('<%=dom_id(@cart)%>');
+  const cart_tax = document.getElementById('tax_cart_<%=@cart.id%>');
+ 
+  <%# check for remove_product variable to remove a product from cart page %>
+  <%if @remove_product%>
+    product && (product.style.display = 'none');
+  <% end %>
+  <%# render index page quantity controller partial with updated contents  %>
+  homeQuantity && (homeQuantity.innerHTML = "<%=escape_javascript(render 'quantity',locals: {product: @product,quantity: @product,remove_product: @remove_product})%>");
+  <%# check if is_cart_empty , if true then remove the cart container from dom %>
+  <%if @is_cart_empty%>
+  document.getElementById('cart').style.display='none';
+  <%else%>
+  <%# else render cart page controls and updated contents to dom %>
+  quantity && (quantity.innerHTML =<%=@product.quantity%>);
+  product_total && (product_total.innerHTML = '<%= number_to_currency(@product.product_price)%>');
+  cart_wo_tax && (cart_wo_tax.innerHTML = '<%=number_to_currency(@cart.cart_total-@cart.tax) %>');
+  cart_total && (cart_total.innerHTML = '<%=number_to_currency(@cart.cart_total)%>');
+  cart_tax && (cart_tax.innerHTML = '<%=number_to_currency(@cart.tax) %>');
+  <% end %>
+})

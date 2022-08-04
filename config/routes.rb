@@ -23,8 +23,8 @@ Rails.application.routes.draw do
   # route for products + add/remove product + buy an item
   resources :products, controller: :pages, only: %i[index show] do
     member do
-      get :add, controller: :carts_products
-      get :remove, controller: :carts_products
+      post :add, controller: :carts_products
+      post :remove, controller: :carts_products
       get :buy_now, controller: :orders
     end
   end

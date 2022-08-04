@@ -21,16 +21,15 @@
               <%= number_to_currency(product.product_price) %>
             </p>
           </div>
-          <%=turbo_frame_tag dom_id(product) do %>
-            <div class="row justify-content-center p-4" id=<%=dom_id(product)%>>
               <%if user_signed_in?%>
+            <div class="row justify-content-center p-4" id=<%=dom_id(product,'home_quantity')%>>
               <%if product_list.present? && product_list[product.id] %>
-                <div class="col-sm-2">
-                    <%= link_to "-" , remove_product_path(product.id), class: "btn mx-2 btn-outline-danger d-inline-block" ,data:{turbo: true}%>
+                <div class="col-sm-2 p-1">
+                    <%= button_to "-" , remove_product_path(product.id), class: "btn mx-2 btn-outline-danger d-inline-block w-100", remote: true%>
                   </div>
                 <%end%>
                 <%if !(product_list.blank?) && product_list[product.id] %>
-                <div class="col-sm-8 text-center">
+                <div class="col-sm-8 text-center" %>
                   <a href="<%=carts_url%>" target="_top">
                     <button type="button" class="btn btn-secondary">
                       On Cart <span class="badge bg-danger">
@@ -40,12 +39,11 @@
                   </a>
                 </div>
                  <%end%>
-                <div class="col-sm-2">
-                  <%= link_to "+" , add_product_path(product.id), class: "btn btn-outline-primary  d-inline-block",data:{turbo: true} %>
+                <div class="col-sm-2 p-1">
+                  <%= button_to "+" , add_product_path(product.id), class: "btn btn-outline-primary  d-inline-block w-100",remote: true %>
+                </div>
                 </div>
                 <%end%>   
-            </div>
-            <%end%>
         </div>
     </div>
   </div>
