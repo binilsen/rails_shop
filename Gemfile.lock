@@ -98,7 +98,19 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise-jwt (0.9.0)
+      devise (~> 4.0)
+      warden-jwt_auth (~> 0.6)
     digest (3.1.0)
+    dry-auto_inject (0.9.0)
+      dry-container (>= 0.3.4)
+    dry-configurable (0.15.0)
+      concurrent-ruby (~> 1.0)
+      dry-core (~> 0.6)
+    dry-container (0.10.1)
+      concurrent-ruby (~> 1.0)
+    dry-core (0.8.1)
+      concurrent-ruby (~> 1.0)
     erubi (1.10.0)
     execjs (2.8.1)
     faraday (2.3.0)
@@ -177,6 +189,8 @@ GEM
       nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
+    rack-cors (1.1.1)
+      rack (>= 2.0.0)
     rack-protection (2.2.1)
       rack
     rack-test (2.0.2)
@@ -251,6 +265,11 @@ GEM
       tzinfo (>= 1.0.0)
     warden (1.2.9)
       rack (>= 2.0.9)
+    warden-jwt_auth (0.6.0)
+      dry-auto_inject (~> 0.8)
+      dry-configurable (~> 0.13)
+      jwt (~> 2.1)
+      warden (~> 1.2)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -277,6 +296,7 @@ DEPENDENCIES
   byebug
   capybara
   devise
+  devise-jwt
   importmap-rails
   jbuilder
   omniauth (~> 2.1)
@@ -284,6 +304,7 @@ DEPENDENCIES
   omniauth-rails_csrf_protection (~> 1.0, >= 1.0.1)
   pg
   puma (~> 5.0)
+  rack-cors
   rails (~> 7.0.3.1)
   sassc-rails
   selenium-webdriver

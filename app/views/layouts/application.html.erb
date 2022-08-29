@@ -23,9 +23,11 @@
         <li class="nav-item">
            <%= link_to "Home", root_path,class:'nav-link' %>
           </li>
+          <%if session[:cart_id]%>
           <li class="nav-item">
-             <%= link_to "Cart", carts_path,class:'nav-link',data:{turbo: false} %>
+             <%= link_to "Cart", cart_path(session[:cart_id]),class:'nav-link',data:{turbo: false} %>
           </li>
+          <%end%>
           <%if user_signed_in? %>
           <li class="nav-item">
             <%= link_to "My Account", user_path(current_user.id),class:'nav-link' %>

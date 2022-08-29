@@ -2,6 +2,7 @@
 
 # cart quantity controlling model
 class CartsProduct < ApplicationRecord
+  default_scope { order('created_at DESC') }
   belongs_to :product
   belongs_to :cart
 

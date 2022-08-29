@@ -30,7 +30,7 @@
                 <%end%>
                 <%if !(product_list.blank?) && product_list[product.id] %>
                 <div class="col-sm-8 text-center" %>
-                  <a href="<%=carts_url%>" target="_top">
+                  <a href="<%=cart_url(session[:cart_id])%>" target="_top">
                     <button type="button" class="btn btn-secondary">
                       On Cart <span class="badge bg-danger">
                         <%=product_list[product.id]%>

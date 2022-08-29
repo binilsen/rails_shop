@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # root route
   root 'pages#index'
   # cart route , with route for buy now
-  resources :carts, only: :index do
+  resources :carts, only: :show do
     member do
       get :place_order, controller: :orders
     end
@@ -26,6 +26,15 @@ Rails.application.routes.draw do
       post :add, controller: :carts_products
       post :remove, controller: :carts_products
       get :buy_now, controller: :orders
+    end
+  end
+
+  # route for api
+  namespace :api, defaults: { format: :json } do
+    devise_scope :user do
+      post 'users', to: 'users/registrations#create'
+      post 'users/sign_in', to: 'users/sessions#create'
+      delete 'users/sign_out', to: 'users/sessions#destroy'
     end
   end
 end

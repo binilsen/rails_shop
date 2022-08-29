@@ -4,11 +4,19 @@
 class OrdersController < ApplicationController
   def index
     @orders = current_user.orders.order(created_at: :desc)
+    respond_to do |format|
+      format.json { render json: @orders }
+      format.html
+    end
   end
 
   def show
     @order = Order.find(params[:id])
     @cart = @order.orders_products.all
+    respond_to do |format|
+      format.json { render json: @order.as_json(include: %i[products orders_products], root: true) }
+      format.html
+    end
   end
 
   def buy_now
